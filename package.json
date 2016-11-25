@@ -1,0 +1,25 @@
+{
+  "name": "axamedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "webpack --watch",
+    "buildn": "webpack -d"
+  },
+  "author": "amalbose@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "electron": "^1.4.8",
+    "webpack": "^1.13.3"
+  }
+}
