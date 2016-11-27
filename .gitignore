@@ -36,3 +36,7 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 app/*.jsapp
+app/index.html
+app/js
+app/js/index.min.js
+app/js/index.min.js.map
