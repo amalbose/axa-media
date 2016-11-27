@@ -5,6 +5,7 @@ var SRC_DIR = path.resolve(__dirname, 'src/js');
 
 module.exports = {
   entry: SRC_DIR + '/index.js',
+  target: 'node',
   output: {
     path: APP_DIR,
     filename: 'index.min.js'
