@@ -1,0 +1,17 @@
+html, body {
+    max-width: 1200px;
+    min-width: 360px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mediaItem{
+    width: 16.6%;
+    height: 250px;
+    background-color: #d8d8d8;
+    border: 3px;
+    border-color: white;
+    border-style: solid;
+    overflow: hidden;
+}

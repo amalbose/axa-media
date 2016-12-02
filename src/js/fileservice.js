@@ -3,7 +3,6 @@ const {MediaFile} = require("./mediafile")
 
 class FileService {
     constructor(_files){
-        console.log("Initializing file service")
         this.files = _files
         this.mediaFiles = []
         this.getMediaFiles();
@@ -12,6 +11,12 @@ class FileService {
     getMediaFiles(){
         this.files.forEach((filePath)=>{
             this.mediaFiles.push(new MediaFile(filePath))
+        });
+    }
+
+    insertToDB(){
+        this.mediaFiles.forEach((item, i)=>{
+            console.log(i, item);
         });
     }
 }

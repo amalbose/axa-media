@@ -6,13 +6,16 @@
   "scripts": {
     "start": "electron .",
     "build": "webpack -d --watch",
-    "test" : "jasmine"
+    "test": "jasmine"
   },
   "author": "amalbose@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "history": "^3.2.1",
     "imdb-api": "^2.2.0",
     "lodash": "^4.17.2",
+    "nedb": "^1.8.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },

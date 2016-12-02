@@ -9,17 +9,21 @@ class MediaFile {
     constructor(_absPath){
         this.MAX_DOTS_FOR_YIFY_FORMAT = 3
         this.movieDataStatus = 'NOT_STARTED'
+        this.imdbURL = ''
+        this.imdbRating = ''
+        this.imdbGenre = ''
+        this.imdbSynopsis = ''
+        this.imdbImg = ''
         this.absPath = _absPath
         this.processFiles()
     }
 
     processFiles(){
-        this.isValidFile = utils.fileExists(this.absPath)
         this.parent = path.resolve(this.absPath, '..')
         this.fileName = utils.getFileName(this.absPath)
         this.processedFileName = this.cleanFileName(this.fileName)
         this.fileSize = utils.getFileSize(this.absPath)
-        this.fileExtn
+        // this.fileExtn
         this.collectMovieData();
     }
 
