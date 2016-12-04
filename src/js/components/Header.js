@@ -7,9 +7,9 @@ export default class Header extends React.Component {
         return (
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
-                    <div className="navbar-header">
+                    <ul className="nav navbar-nav navbar-left">
                         <li><Link to="/" className="navbar-brand" >Axa Media</Link></li>
-                    </div>
+                    </ul>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form className="navbar-form navbar-left">
                         <div className="form-group">
@@ -17,8 +17,9 @@ export default class Header extends React.Component {
                         </div>
                     </form>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><Link to="settings">Settings</Link></li>
-                        <li><Link to="about">About</Link></li>
+                        <li><Link to="/" className="glyphicon glyphicon-home btn-xlg" aria-hidden="true"></Link></li>
+                        <li><Link to="settings" className="glyphicon glyphicon-cog btn-xlg" aria-hidden="true"></Link></li>
+                        <li><Link to="about" className="glyphicon glyphicon-info-sign btn-xlg" aria-hidden="true"></Link></li>
                     </ul>
                     </div>
                 </div>

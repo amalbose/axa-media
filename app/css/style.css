@@ -26,3 +26,8 @@ html, body {
     padding-right: 15px;
     padding-left: 15px;
 }
+
+.btn-xlg {
+    font-size: 22px;
+    border-radius: 6px;
+}
