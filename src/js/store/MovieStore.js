@@ -1,8 +1,8 @@
 import { EventEmitter} from "events"
-var utils = require("../utils")
-const {FileService} = require('../fileservice')
-const {MediaFile} = require('../mediafile')
-import dispatcher from "../dispatcher"
+var utils = require("../controllers/utils")
+const {FileService} = require('../controllers/fileservice')
+const {MediaFile} = require('../controllers/mediafile')
+import dispatcher from "../controllers/dispatcher"
 
 class MovieStore extends EventEmitter{
 

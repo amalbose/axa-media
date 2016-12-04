@@ -1,4 +1,4 @@
-import dispatcher from "../dispatcher"
+import dispatcher from "../controllers/dispatcher"
 
 module.exports.loadMovies = ()=>{
     dispatcher.dispatch({

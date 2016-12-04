@@ -1,8 +1,8 @@
 import React from 'react';
 var path = require('path')
-var utils = require("../utils")
+var utils = require("../controllers/utils")
 
-const {FileService} = require('../fileservice')
+const {FileService} = require('../controllers/fileservice')
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -32,9 +32,9 @@ export default class Home extends React.Component {
     getCount(){
         let width = window.innerWidth;
         let count = 6;
-        if(width < 1050 && width > 800)
+        if(width < 1050 && width > 830)
             count = 5;
-        else if(width < 800)
+        else if(width <= 830)
             count = 4;
         return count;
     }
