@@ -63,7 +63,7 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="mediaList">
                 <MediaList mediaFiles={this.state.mediaFiles} count={this.state.count}/>    
             </div>
         );

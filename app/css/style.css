@@ -1,7 +1,12 @@
 html, body {
-    max-width: 1200px;
     min-width: 600px;
     width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#mediaList{
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
