@@ -15,7 +15,7 @@ export default class Home extends React.Component {
     constructor() {
         super();
         this.state = {
-            mediaFiles : store.getAll(),
+            mediaFiles : store.getFiltered(),
             count : this.getCount()
         }
         this.loadMovies();
@@ -25,17 +25,17 @@ export default class Home extends React.Component {
 
     updateDimensions() {
         this.setState({
-                count : this.getCount()
+            count : this.getCount()
         })
     }
 
     getCount(){
         let width = window.innerWidth;
-        let count = 6
+        let count = 6;
         if(width < 1050 && width > 800)
-            count = 5
+            count = 5;
         else if(width < 800)
-            count = 4
+            count = 4;
         return count;
     }
 
@@ -50,7 +50,6 @@ export default class Home extends React.Component {
     }
 
     loadMovies(){
-        console.log("MovieActions...")
         MovieActions.loadMovies();
     }
 
@@ -64,7 +63,7 @@ export default class Home extends React.Component {
 
     getMovies(){
         this.setState({
-            mediaFiles : store.getAll()
+            mediaFiles : store.getFiltered()
         });
     }
 

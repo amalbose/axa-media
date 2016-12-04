@@ -1,7 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router'
+import * as MovieActions from '../actions/MovieActions'
 
 export default class Header extends React.Component {
+
+    filterMovies(e){
+        let query = e.target.value;
+        MovieActions.filterMovies(query);
+    }
 
     render() {
         return (
@@ -13,7 +19,7 @@ export default class Header extends React.Component {
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form className="navbar-form navbar-left">
                         <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Search"/>
+                        <input type="text" className="form-control" placeholder="Search Movies" onChange={this.filterMovies.bind(this)}/>
                         </div>
                     </form>
                     <ul className="nav navbar-nav navbar-right">
@@ -23,7 +29,7 @@ export default class Header extends React.Component {
                     </ul>
                     </div>
                 </div>
-                </nav>
+            </nav>
         );
     }
 }
