@@ -7,26 +7,28 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import MediaList from './components/MediaList'
 
-export default class App extends React.Component {
+import store from './store/MovieStore';
+import MovieActions from './actions/MovieActions';
 
+export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            mediaFiles : []
+            mediaFiles : store.getAll()
         }
+        this.loadMovies();
     }
 
-    componentDidMount(){
-        this.collectMediaFiles('/media/amalbose/D/Movies');
+    loadMovies(){
+        console.log(MovieActions)
+        MovieActions.loadMovies();
     }
 
-    collectMediaFiles(filePath){
-        utils.walk(filePath, (err, results) => {
-            if (err) throw err;
-            var f = new FileService(results)
+    componentWillMount(){
+        store.on("change", ()=>{
             this.setState({
-                mediaFiles : f.mediaFiles
-            })
+                mediaFiles : store.getAll()
+            });
         });
     }
 

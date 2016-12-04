@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "flux": "^3.1.0",
     "history": "^3.2.1",
     "imdb-api": "^2.2.0",
     "lodash": "^4.17.2",
