@@ -40,7 +40,7 @@ export default class Home extends React.Component {
     }
 
     componentWillMount() {
-        this.updateDimensions();
+        this.updateDimensions;
     }
     componentDidMount() {
         window.addEventListener("resize", this.updateDimensions);
