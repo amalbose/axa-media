@@ -23,7 +23,7 @@ export default class MediaList extends React.Component {
     }
 
     renderMediaBlock(media, index) {
-        return <Media key={index} mediaItem={media} />
+        return <Media key={index} mediaItem={media} count={this.props.count} />
     }
 
     renderMediaList(Medias){
@@ -34,7 +34,7 @@ export default class MediaList extends React.Component {
             if (mediaBlock) {
                 blocks.push(mediaBlock);
             }
-            if (blocks.length >= 6) {
+            if (blocks.length >= this.props.count) {
                 const row = this.renderMediaRow(blocks, index);
                 if (row) {
                     rows.push(row);
@@ -49,9 +49,7 @@ export default class MediaList extends React.Component {
         return rows;
     }
 
-    render() {
-        // const Medias = this.props.mediaFiles.map((item, i)=> <Media key={i} mediaItem={item} />)
-        
+    render() {        
         return (
             <div className="container-fluid">
                 {this.renderMediaList(this.props.mediaFiles)}
