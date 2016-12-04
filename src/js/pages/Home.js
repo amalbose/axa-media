@@ -20,6 +20,7 @@ export default class Home extends React.Component {
         }
         this.loadMovies();
         this.updateDimensions = this.updateDimensions.bind(this);
+        this.getMovies = this.getMovies.bind(this);
     }
 
     updateDimensions() {
@@ -54,10 +55,16 @@ export default class Home extends React.Component {
     }
 
     componentWillMount(){
-        store.on("change", ()=>{
-            this.setState({
-                mediaFiles : store.getAll()
-            });
+        store.on("change", this.getMovies);
+    }
+
+    componentWillUnmount(){
+        store.removeListener("change", this.getMovies);
+    }
+
+    getMovies(){
+        this.setState({
+            mediaFiles : store.getAll()
         });
     }
 
