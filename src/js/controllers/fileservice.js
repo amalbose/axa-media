@@ -1,24 +1,21 @@
 const utils = require('./utils')
 const {MediaFile} = require("./mediafile")
+import db from './db'
 
 class FileService {
     constructor(_files){
         this.files = _files
         this.mediaFiles = []
-        this.getMediaFiles();
     }
 
-    getMediaFiles(){
+    getMediaFiles(callback){
         this.files.forEach((filePath)=>{
-            this.mediaFiles.push(new MediaFile(filePath))
+            var movie = new MediaFile(filePath);
+            this.mediaFiles.push(movie);
+            db.insertMediaFile(movie, callback);
         });
     }
 
-    insertToDB(){
-        this.mediaFiles.forEach((item, i)=>{
-            console.log(i, item);
-        });
-    }
 }
 
 module.exports.FileService = FileService;

@@ -3,6 +3,7 @@ var utils = require("../controllers/utils")
 const {FileService} = require('../controllers/fileservice')
 const {MediaFile} = require('../controllers/mediafile')
 import dispatcher from "../controllers/dispatcher"
+import db from '../controllers/db'
 
 class MovieStore extends EventEmitter{
 
@@ -13,15 +14,39 @@ class MovieStore extends EventEmitter{
         this.loading = true;
         this.loadData();
         this.handleActions = this.handleActions.bind(this);
+        this.emitChange = this.emitChange.bind(this)
     }
 
    loadData(){
         utils.walk('/media/amalbose/D/Movies/', (err, results) => {
             if (err) throw err;
-            var f = new FileService(results);
-            this.mediaFiles = f.mediaFiles;
-            this.emit("change");
+
+            db.getAllMediaFiles((movies) => {
+                movies.forEach((movie)=>{
+                    if(!utils.fileExists(movie.absPath)) {
+                        db.updateMediaFiles({}, { moviePresent : false });
+                    }
+                });
+
+                var f = new FileService(results);
+                f.getMediaFiles(()=> {
+                    db.getAllMediaFiles((movies) => {
+                        console.log(" get all" + movies.length)
+                        if(movies.length > 0)
+                            this.mediaFiles = movies;
+                        this.emitChange();
+                    });
+                })
+
+
+            })
+
         });
+    }
+
+    emitChange(){
+        console.log("emitting change");
+        this.emit("change");
     }
 
     getAll(){
@@ -44,5 +69,6 @@ class MovieStore extends EventEmitter{
    
 }
 var store = window.store = new MovieStore();
+window.db = db;
 dispatcher.register(store.handleActions.bind(store));
 export default store;

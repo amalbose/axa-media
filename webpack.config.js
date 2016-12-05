@@ -10,6 +10,9 @@ module.exports = {
     path: APP_DIR,
     filename: 'index.min.js'
   },
+  node: {
+    __dirname: false
+  },
   module : {
     loaders : [
       {
