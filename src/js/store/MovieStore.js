@@ -23,15 +23,16 @@ class MovieStore extends EventEmitter{
             db.getAllMediaFiles((movies) => {
                 movies.forEach((movie)=>{
                     if(!utils.fileExists(movie.absPath)) {
-                        db.updateMediaFiles({}, { moviePresent : false });
+                        db.updateMediaFiles({ absPath : movie.absPath}, { moviePresent : false });
                     }
                 });
                 var f = new FileService(results);
-                f.getMediaFiles(()=> {
+                f.insertMediaFiles(()=> {
                     db.getAllMediaFiles((movies) => {
                         if(movies.length > 0)
                             this.mediaFiles = movies;
                         this.emitChange();
+                        //emit load IMDB event
                     });
                 })
             })

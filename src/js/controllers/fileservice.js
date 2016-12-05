@@ -8,7 +8,7 @@ class FileService {
         this.mediaFiles = []
     }
 
-    getMediaFiles(callback){
+    insertMediaFiles(callback){
         this.files.forEach((filePath)=>{
             var movie = new MediaFile(filePath);
             this.mediaFiles.push(movie);
