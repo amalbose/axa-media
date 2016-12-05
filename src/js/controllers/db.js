@@ -13,17 +13,26 @@ var db = new Datastore({
     autoload: true 
 });
 
-exports.insertMediaFile = (movie,callback) => {
-	db.find({ absPath: movie.absPath }, function (err, docs) {
+function insertMediaFile(data, i, completeCallback) {
+    if(i < data.length) {
+		let movie = data[i];
+		db.find({ absPath: movie.absPath }, function (err, docs) {
 		if(docs.length === 0) {
 			db.insert(movie, function (err, newDoc) {
-				callback();
+				insertMediaFile(data, i+1, completeCallback);
 			});
 		} else {
-			callback();
+			insertMediaFile(data, i+1, completeCallback);
 		}
 	});
+    } else {
+        if(typeof completeCallback === "function") {
+            completeCallback();
+        }
+    }
 }
+
+exports.insertMediaFile = insertMediaFile;
 
 exports.getAllMediaFiles = (callback) => {
 	db.find({}).exec(function (err, docs) {

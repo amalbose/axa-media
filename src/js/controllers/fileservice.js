@@ -12,8 +12,8 @@ class FileService {
         this.files.forEach((filePath)=>{
             var movie = new MediaFile(filePath);
             this.mediaFiles.push(movie);
-            db.insertMediaFile(movie, callback);
         });
+        db.insertMediaFile(this.mediaFiles, 0, callback);
     }
 
 }

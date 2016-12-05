@@ -20,32 +20,25 @@ class MovieStore extends EventEmitter{
    loadData(){
         utils.walk('/media/amalbose/D/Movies/', (err, results) => {
             if (err) throw err;
-
             db.getAllMediaFiles((movies) => {
                 movies.forEach((movie)=>{
                     if(!utils.fileExists(movie.absPath)) {
                         db.updateMediaFiles({}, { moviePresent : false });
                     }
                 });
-
                 var f = new FileService(results);
                 f.getMediaFiles(()=> {
                     db.getAllMediaFiles((movies) => {
-                        console.log(" get all" + movies.length)
                         if(movies.length > 0)
                             this.mediaFiles = movies;
                         this.emitChange();
                     });
                 })
-
-
             })
-
         });
     }
 
     emitChange(){
-        console.log("emitting change");
         this.emit("change");
     }
 
@@ -68,7 +61,6 @@ class MovieStore extends EventEmitter{
     }
    
 }
-var store = window.store = new MovieStore();
-window.db = db;
+var store = new MovieStore();
 dispatcher.register(store.handleActions.bind(store));
 export default store;
