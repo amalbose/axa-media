@@ -12,22 +12,40 @@ html, body {
 }
 
 .mediaItem{
-    height: 250px;
-    background-color: #d8d8d8;
+    /*height: 250px;*/
+    /*background-color: #d8d8d8;
     border: 3px;
     border-color: white;
-    border-style: solid;
+    border-style: solid;*/
     overflow: hidden;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .col-xs-15 {
     width: 20%;
     float: left;
-    padding-right: 15px;
-    padding-left: 15px;
 }
 
 .btn-xlg {
     font-size: 22px;
     border-radius: 6px;
+}
+
+.thumbnailCol {
+    padding: 0px !important;
+    border-radius: 0px !important; 
+    background-color: #d8d8d8;
+    border: 1px solid #fff !important;
+}
+
+.noOverflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.thumbnailCol .caption {
+    padding: 3px;
+    padding-left: 10px;
 }

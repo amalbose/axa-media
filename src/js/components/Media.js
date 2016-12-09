@@ -13,8 +13,15 @@ export default class Media extends React.Component {
         }
         return (
             <div className={classVal}>
-                <h4>{mediaItem.processedFileName}</h4>
-                <p>{mediaItem.movieDataStatus}</p>
+                <div className="thumbnail thumbnailCol">
+                    <img src="assets/default.jpg" alt="..."/>
+                    <div className="caption">
+                        <h5 className="noOverflow" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
+                      <p>{mediaItem.imdbRating}</p> 
+                     {/*   <p><a href="#" className="btn btn-primary" role="button">Button</a> <a href="#" className="btn btn-default" role="button">Button</a></p>
+                        */}
+                    </div>
+                </div>
             </div>
         );
     }

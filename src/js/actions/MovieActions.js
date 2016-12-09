@@ -15,3 +15,10 @@ module.exports.filterMovies = (query)=>{
         query
     });
 }
+
+module.exports.triggerIMDBLoad = ()=>{
+    console.log("triggerting fetch")
+    dispatcher.dispatch({
+        type : "TRIGGER_IMDB_FETCH" 
+    });
+}
