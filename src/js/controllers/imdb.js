@@ -6,9 +6,7 @@ const imdb = require('imdb-api');
 module.exports.getImdbDetails = (movieName, callback) => {
     imdb.get(movieName)
     .then((res)=> {
-        console.log(res)
         callback(res)
     }).catch((err)=>{
-        console.log("ERR " + err)
     });
 }
