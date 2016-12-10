@@ -7,14 +7,19 @@ const utils = require('./utils')
 class MediaFile {
     
     constructor(_absPath){
-        this.movieDataStatus = 'NOT_STARTED';
-        this.imdbURL = '';
-        this.imdbRating = '';
-        this.imdbGenre = '';
-        this.imdbSynopsis = '';
-        this.imdbImg = '';
-        this.absPath = path.normalize(_absPath);
-        this.moviePresent = true
+        this.movieDataStatus    = 'NOT_STARTED';
+        this.imdbURL            = '';
+        this.imdbYear           = '';
+        this.imdbActors         = '';
+        this.imdbDirector       = '';
+        this.imdbPlot           = '';
+        this.imdbRated          = '';
+        this.imdbRating         = '';
+        this.imdbGenres         = '';
+        this.imdbRuntime        = '';
+        this.imdbImg            = '';
+        this.absPath            = path.normalize(_absPath);
+        this.moviePresent       = true
         this.processFiles();
     }
 
@@ -24,7 +29,6 @@ class MediaFile {
         this.processedFileName = this.cleanFileName(this.fileName);
         this.fileSize = utils.getFileSize(this.absPath);
         // this.fileExtn
-        this.collectMovieData();
     }
 
     cleanFileName(fileName){
@@ -53,11 +57,6 @@ class MediaFile {
         return cleanedFileName.trim();
     }
 
-    collectMovieData(){
-        this.movieDataStatus = 'IN_PROGRESS';
-
-        this.movieDataStatus = 'AVAILABLE';
-    }
 }
 
 module.exports.MediaFile = MediaFile;
