@@ -62,6 +62,8 @@ module.exports.countOccurences = (str, pattern) => {
 module.exports.downloadFile = (url, fileName, callback) => {
   download(url).then(data => {
       fs.writeFileSync(fileName, data);
-      callback();
+      callback('SUCCESS');
+  }).catch((e)=>{
+    callback('FAILURE')
   });
 }

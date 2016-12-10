@@ -87,9 +87,9 @@ class MovieStore extends EventEmitter{
                     imdbGenres      : movieDetails.genres,
                     imdbRuntime     : movieDetails.runtime,
                     imdbImg         : movieDetails.poster,
-                    poster          : this.getPoster(movie._id, movieDetails.poster, movieDetails.imdbid),
                     movieDataStatus : 'COMPLETED'
                 }
+                this.getPoster(movie._id, movieDetails.poster, movieDetails.imdbid)
                 db.updateIMDBData(movie._id,updateDetails)
                 this.emitChange()
             })
@@ -98,8 +98,13 @@ class MovieStore extends EventEmitter{
 
     getPoster(movieId, posterUrl, fileName){
         var filePath = path.join(__dirname, 'assets/img/'+fileName+'.jpg')
-        utils.downloadFile(posterUrl, filePath, ()=> {
-            _.find(this.mediaFiles,(mov)=>{return mov._id === movieId}).poster = filePath
+        utils.downloadFile(posterUrl, filePath, (status)=> {
+            if(status != 'SUCCESS') {
+                filePath = 'assets/default.jpg';
+            }
+            var curMov = _.find(this.mediaFiles,(mov)=>{return mov._id === movieId});
+            curMov.poster = filePath;
+            db.updateIMDBData(curMov._id,{ poster : filePath})
             this.emitChange()
         })
         return filePath
