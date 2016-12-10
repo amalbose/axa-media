@@ -14,7 +14,7 @@ export default class Media extends React.Component {
         return (
             <div className={classVal}>
                 <div className="thumbnail thumbnailCol">
-                    <img src="assets/default.jpg" alt="..."/>
+                    <img src={mediaItem.poster} alt="..."/>
                     <div className="caption">
                         <h5 className="noOverflow" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
                       <p>{mediaItem.imdbRating}</p> 

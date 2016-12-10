@@ -18,6 +18,7 @@ class MediaFile {
         this.imdbGenres         = '';
         this.imdbRuntime        = '';
         this.imdbImg            = '';
+        this.poster             = 'assets/default.jpg';
         this.absPath            = path.normalize(_absPath);
         this.moviePresent       = true
         this.processFiles();
