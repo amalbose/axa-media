@@ -1,12 +1,12 @@
 const fs = require('fs')
 const path = require('path')
 const util = require('util')
+const download = require('download');
 
 module.exports.listFiles = (dirName, onContent) => {
-    console.log("listing files for " + dirName)
     fs.readdir(dirName, (err,files) => {
         if(err)
-            console.log("Err  " + err)
+            console.log("Err  " + err);
         onContent(files);
     });
 }
@@ -27,8 +27,8 @@ var walk = (dir, done) => {
             next();
           });
         } else {
-            var extn = path.extname(file)
-            var extns = ['.avi' , '.mp4']
+            var extn = path.extname(file);
+            var extns = ['.avi' , '.mp4'];
             if(extns.indexOf(extn) != -1)
                 results.push(file);
           next();
@@ -44,17 +44,24 @@ module.exports.walk = walk;
  * Returns the file name without extension
  */
 module.exports.getFileName = (fullPath) => {
-    return fullPath.replace(/^.*[\\\/]/, '')
+    return fullPath.replace(/^.*[\\\/]/, '');
 }
 
 module.exports.getFileSize = (fileName) => {
-  return fs.statSync(fileName).size
+  return fs.statSync(fileName).size;
 }
 
 module.exports.fileExists = (filePath) => {
-  return fs.existsSync(filePath)
+  return fs.existsSync(filePath);
 }
 
 module.exports.countOccurences = (str, pattern) => {
-  return (str.split(pattern).length - 1)
+  return (str.split(pattern).length - 1);
+}
+
+module.exports.downloadFile = (url, fileName, callback) => {
+  download(url).then(data => {
+      fs.writeFileSync(fileName, data);
+      callback();
+  });
 }

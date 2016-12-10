@@ -60,3 +60,8 @@ html, body {
     padding: 3px;
     padding-left: 10px;
 }
+
+.thumbnail > img {
+    width: 182px;
+    height: 282px;
+}

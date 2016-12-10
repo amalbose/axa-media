@@ -47,7 +47,6 @@ exports.updateMediaFiles = (query, updateVal)=> {
 
 exports.updateIMDBData = (idVal, movieData)=> {
 	db.update({ _id: idVal }, { $set: movieData }, {}, function (err, numReplaced) {
-		console.log("Updated " + numReplaced)
 	});
 }
 

@@ -1,7 +1,9 @@
 import { EventEmitter} from "events"
+var _ = require('lodash');
 var utils = require("../controllers/utils")
 const {FileService} = require('../controllers/fileservice')
 const {MediaFile} = require('../controllers/mediafile')
+const path = require('path')
 import dispatcher from "../controllers/dispatcher"
 import db from '../controllers/db'
 import * as MovieActions from '../actions/MovieActions'
@@ -18,6 +20,7 @@ class MovieStore extends EventEmitter{
         this.emitChange          = this.emitChange.bind(this)
         this.triggerIMDBDataPull = this.triggerIMDBDataPull.bind(this)
         this.pullIMDBData        = this.pullIMDBData.bind(this);
+        this.getPoster           = this.getPoster.bind(this);
         this.loadData();
     }
 
@@ -84,12 +87,22 @@ class MovieStore extends EventEmitter{
                     imdbGenres      : movieDetails.genres,
                     imdbRuntime     : movieDetails.runtime,
                     imdbImg         : movieDetails.poster,
+                    poster          : this.getPoster(movie._id, movieDetails.poster, movieDetails.imdbid),
                     movieDataStatus : 'COMPLETED'
                 }
                 db.updateIMDBData(movie._id,updateDetails)
                 this.emitChange()
             })
         });
+    }
+
+    getPoster(movieId, posterUrl, fileName){
+        var filePath = path.join(__dirname, 'assets/img/'+fileName+'.jpg')
+        utils.downloadFile(posterUrl, filePath, ()=> {
+            _.find(this.mediaFiles,(mov)=>{return mov._id === movieId}).poster = filePath
+            this.emitChange()
+        })
+        return filePath
     }
 
     getAll(){
