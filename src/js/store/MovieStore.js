@@ -11,27 +11,32 @@ class MovieStore extends EventEmitter{
 
     constructor(){
         super();
-        this.mediaFiles = [];
-        this.filter = "";
-        this.loading = true;
-        this.loadData();
-        this.handleActions = this.handleActions.bind(this);
-        this.emitChange = this.emitChange.bind(this)
+        this.mediaFiles          = [];
+        this.filter              = "";
+        this.loading             = true;
+        this.handleActions       = this.handleActions.bind(this);
+        this.emitChange          = this.emitChange.bind(this)
         this.triggerIMDBDataPull = this.triggerIMDBDataPull.bind(this)
-        this.pullIMDBData = this.pullIMDBData.bind(this);
+        this.pullIMDBData        = this.pullIMDBData.bind(this);
+        this.loadData();
     }
 
    loadData(){
         utils.walk('/media/amalbose/D/Movies/', (err, results) => {
             if (err) throw err;
             db.getAllMediaFiles((movies) => {
+                // loop thorugh all available movies id db
+                // and set its presence as false
                 movies.forEach((movie)=>{
                     if(!utils.fileExists(movie.absPath)) {
                         db.updateMediaFiles({ absPath : movie.absPath}, { moviePresent : false });
                     }
                 });
+                
                 var f = new FileService(results);
+                // get the files from the folder and insert if not present
                 f.insertMediaFiles(()=> {
+                    // read all movies and trigger IMDBPull if not available
                     db.getAllMediaFiles((movies) => {
                         if(movies.length > 0)
                             this.mediaFiles = movies;
@@ -45,7 +50,6 @@ class MovieStore extends EventEmitter{
     }
 
     emitChange(){
-        console.log("emitting chnage...");
         this.emit("change");
     }
 
@@ -54,10 +58,35 @@ class MovieStore extends EventEmitter{
     }
 
     pullIMDBData(){
-        console.log("trigger imdb data pull");
-        this.mediaFiles.forEach((movie) => {
+        // FIXME add filter to only pull if imdb details not available
+        this.mediaFiles.filter((mov)=> {return mov.movieDataStatus !="COMPLETED"}).forEach((movie) => {
             imdb.getImdbDetails(movie.processedFileName, (movieDetails)=>{
-                movie.imdbRating = movieDetails.imdbid;
+                movie.imdbURL           = movieDetails.imdburl;
+                movie.imdbYear          = movieDetails.year;
+                movie.imdbActors        = movieDetails.actors;
+                movie.imdbDirector      = movieDetails.director;
+                movie.imdbPlot          = movieDetails.plot;
+                movie.imdbRated         = movieDetails.rated;
+                movie.imdbRating        = movieDetails.rating;
+                movie.imdbGenres        = movieDetails.genres;
+                movie.imdbRuntime       = movieDetails.runtime;
+                movie.imdbImg           = movieDetails.poster;
+                movie.movieDataStatus   = 'COMPLETED'
+                // object to update
+                let updateDetails = {
+                    imdbURL         : movieDetails.imdburl,
+                    imdbYear        : movieDetails.year,
+                    imdbActors      : movieDetails.actors,
+                    imdbDirector    : movieDetails.director,
+                    imdbPlot        : movieDetails.plot,
+                    imdbRated       : movieDetails.rated,
+                    imdbRating      : movieDetails.rating,
+                    imdbGenres      : movieDetails.genres,
+                    imdbRuntime     : movieDetails.runtime,
+                    imdbImg         : movieDetails.poster,
+                    movieDataStatus : 'COMPLETED'
+                }
+                db.updateIMDBData(movie._id,updateDetails)
                 this.emitChange()
             })
         });
@@ -73,8 +102,6 @@ class MovieStore extends EventEmitter{
     }
 
     handleActions(action){
-        console.log("Action")
-        console.log(action)
         switch(action.type) {
             case "FILTER_MOVIES": {
                 this.filter = action.query;
@@ -83,7 +110,6 @@ class MovieStore extends EventEmitter{
             }
             case "TRIGGER_IMDB_FETCH" : {
                 this.pullIMDBData();
-                // this.emit("change");
                 break;
             }
         }
