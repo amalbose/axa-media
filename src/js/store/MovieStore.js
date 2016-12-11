@@ -28,7 +28,6 @@ class MovieStore extends EventEmitter{
     }
 
    loadData(){
-       console.log("Loading...");
        let dirs = settingsStore.getMovieDirs();
        dirs.forEach((dir, index) => {
             utils.walk(dir, (err, results) => {
