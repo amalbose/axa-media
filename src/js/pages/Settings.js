@@ -8,7 +8,6 @@ import SettingsActions from '../actions/SettingsActions';
 export default class Settings extends React.Component {
 
     constructor(){
-        console.log(settingsStore);
         super();
         this.state = {
             dirs : settingsStore.getMovieDirs()
