@@ -3,6 +3,8 @@ require("babel-register");
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
+const dialog = require('electron').dialog
+const ipc = require('electron').ipcMain
 
 let win
 
@@ -33,4 +35,12 @@ app.on('activate', () => {
   if (win === null) {
     createWindow()
   }
+})
+
+ipc.on('open-file-dialog', function (event) {
+  dialog.showOpenDialog({
+    properties: ['openDirectory']
+  }, function (files) {
+    if (files) event.sender.send('selected-directory', files)
+  })
 })

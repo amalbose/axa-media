@@ -1,9 +1,10 @@
 import { EventEmitter} from "events"
 var _ = require('lodash');
+const path = require('path')
+
 var utils = require("../controllers/utils")
 const {FileService} = require('../controllers/fileservice')
 const {MediaFile} = require('../controllers/mediafile')
-const path = require('path')
 import dispatcher from "../controllers/dispatcher"
 import db from '../controllers/db'
 import * as MovieActions from '../actions/MovieActions'

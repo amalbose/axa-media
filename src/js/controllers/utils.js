@@ -67,3 +67,29 @@ module.exports.downloadFile = (url, fileName, callback) => {
     callback('FAILURE')
   });
 }
+
+module.exports.readJson = (file,callBack) =>{
+  if (!fs.existsSync(file)) {
+    callBack('')
+  }
+  fs.readFile(file, 'utf8', function (err, data) {
+  if (err)
+    throw err;
+  
+  if(data==''){
+    callBack('')
+  }
+  var json = JSON.parse(data);
+  callBack(json)
+  });
+}
+
+module.exports.writeToFile = (file, contents, callback) => {
+  fs.writeFile(file, contents, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+      callback();
+  });
+
+}
