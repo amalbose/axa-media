@@ -28,7 +28,7 @@ var walk = (dir, done) => {
           });
         } else {
             var extn = path.extname(file);
-            var extns = ['.avi' , '.mp4'];
+            var extns = ['.avi' , '.mp4' , '.mkv'];
             if(extns.indexOf(extn) != -1)
                 results.push(file);
           next();
@@ -82,6 +82,11 @@ module.exports.readJson = (file,callBack) =>{
   var json = JSON.parse(data);
   callBack(json)
   });
+}
+
+module.exports.readJsonSync = (file) => {
+  var data = fs.readFileSync(file).toString();
+  return JSON.parse(data);
 }
 
 module.exports.writeToFile = (file, contents, callback) => {

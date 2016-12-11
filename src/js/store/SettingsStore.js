@@ -24,11 +24,9 @@ class SettingsStore extends EventEmitter{
     }
 
     loadDirs(){
-        utils.readJson(this.settingsFile,(jsonObj)=> {
-            this.settingsJson = jsonObj;
-            this.dirs = jsonObj.MEDIA_DIRECTORIES;
-            this.emit("changeDir");
-        });
+        this.settingsJson = utils.readJsonSync(this.settingsFile);
+        this.dirs = this.settingsJson.MEDIA_DIRECTORIES;
+        this.emit("changeDir");
     }
 
     addDirectory(path) {
