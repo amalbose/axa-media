@@ -21,3 +21,9 @@ module.exports.triggerIMDBLoad = ()=>{
         type : "TRIGGER_IMDB_FETCH" 
     });
 }
+
+module.exports.triggerReload = ()=>{
+    dispatcher.dispatch({
+        type : "TRIGGER_RELOAD" 
+    });
+}

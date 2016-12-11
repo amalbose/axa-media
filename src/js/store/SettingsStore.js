@@ -1,7 +1,9 @@
 import { EventEmitter} from "events"
 const path = require('path')
+var _ = require('lodash')
 import dispatcher from "../controllers/dispatcher"
 import utils from '../controllers/utils';
+import * as MovieActions from '../actions/MovieActions'
 
 class SettingsStore extends EventEmitter{
     
@@ -30,7 +32,8 @@ class SettingsStore extends EventEmitter{
     }
 
     addDirectory(path) {
-        this.settingsJson.MEDIA_DIRECTORIES.push(path)
+        if(_.indexOf(this.settingsJson.MEDIA_DIRECTORIES, path) < 0)
+            this.settingsJson.MEDIA_DIRECTORIES.push(path)
         this.updateSettings();
     }
 
@@ -41,12 +44,13 @@ class SettingsStore extends EventEmitter{
 
     emitChangeDir(){
         this.emit("changeDir")
+        MovieActions.triggerReload();
     }
 
     handleActions(action){
         switch(action.type) {
             case "ADD_DIRECTORY": {
-                this.addDirectory(action.path)
+                this.addDirectory(action.path[0])
                 break;
             }
             case "REMOVE_DIRECTORY" : {

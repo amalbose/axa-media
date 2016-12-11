@@ -96,5 +96,8 @@ module.exports.writeToFile = (file, contents, callback) => {
       }
       callback();
   });
+}
 
+module.exports.getUniqueArray = (arr) => {
+    return arr.filter( (v, i, a) => a.indexOf(v) === i ); 
 }

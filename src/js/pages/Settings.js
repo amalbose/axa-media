@@ -12,17 +12,24 @@ export default class Settings extends React.Component {
         this.state = {
             dirs : settingsStore.getMovieDirs()
         }
-        this.triggerAddDir  = this.triggerAddDir.bind(this);
-        this.getMovieDirs   = this.getMovieDirs.bind(this);
-        this.addDirectory   = this.addDirectory.bind(this);
+        this.triggerAddDir          = this.triggerAddDir.bind(this);
+        this.getMovieDirs           = this.getMovieDirs.bind(this);
+        this.addDirectory           = this.addDirectory.bind(this);
+        this.addDirectoryHandler    = this.addDirectoryHandler.bind(this);
     }
 
     componentWillMount(){
         settingsStore.on("changeDir", this.getMovieDirs);
-        var that = this;
-        ipc.on('selected-directory', function (event, path) {
-            that.addDirectory(path);
-        })
+        ipc.on('selected-directory', this.addDirectoryHandler)
+    }
+
+    addDirectoryHandler(event, path){
+        this.addDirectory(path);
+    }
+
+    componentWillUnmount(){
+        settingsStore.removeListener("changeDir", this.getMovieDirs);
+        ipc.removeListener('selected-directory', this.addDirectoryHandler);
     }
 
     addDirectory(path) {

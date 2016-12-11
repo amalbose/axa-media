@@ -10,6 +10,8 @@ import db from '../controllers/db'
 import * as MovieActions from '../actions/MovieActions'
 import imdb from '../controllers/imdb'
 
+import settingsStore from '../store/SettingsStore';
+
 class MovieStore extends EventEmitter{
 
     constructor(){
@@ -26,31 +28,36 @@ class MovieStore extends EventEmitter{
     }
 
    loadData(){
-        utils.walk('/media/amalbose/D/Movies/', (err, results) => {
-            if (err) throw err;
-            db.getAllMediaFiles((movies) => {
-                // loop thorugh all available movies id db
-                // and set its presence as false
-                movies.forEach((movie)=>{
-                    if(!utils.fileExists(movie.absPath)) {
-                        db.updateMediaFiles({ absPath : movie.absPath}, { moviePresent : false });
-                    }
-                });
-                
-                var f = new FileService(results);
-                // get the files from the folder and insert if not present
-                f.insertMediaFiles(()=> {
-                    // read all movies and trigger IMDBPull if not available
-                    db.getAllMediaFiles((movies) => {
-                        if(movies.length > 0)
-                            this.mediaFiles = movies;
-                        this.emitChange();
-                        this.triggerIMDBDataPull();
-                        //emit load IMDB event
+       console.log("Loading...");
+       let dirs = settingsStore.getMovieDirs();
+       dirs.forEach((dir, index) => {
+            utils.walk(dir, (err, results) => {
+                if (err) throw err;
+                db.getAllMediaFiles((movies) => {
+                    // loop thorugh all available movies id db
+                    // and set its presence as false
+                    movies.forEach((movie)=>{
+                        if(!utils.fileExists(movie.absPath)) {
+                            db.updateMediaFiles({ absPath : movie.absPath}, { moviePresent : false });
+                        }
                     });
+                    
+                    var f = new FileService(results);
+                    // get the files from the folder and insert if not present
+                    f.insertMediaFiles(()=> {
+                        // read all movies and trigger IMDBPull if not available
+                        db.getAllMediaFiles((movies) => {
+                            if(movies.length > 0)
+                                this.mediaFiles = movies;
+                            this.emitChange();
+                            this.triggerIMDBDataPull();
+                            //emit load IMDB event
+                        });
+                    })
                 })
-            })
-        });
+            });
+       });
+
     }
 
     emitChange(){
@@ -129,6 +136,10 @@ class MovieStore extends EventEmitter{
             }
             case "TRIGGER_IMDB_FETCH" : {
                 this.pullIMDBData();
+                break;
+            }
+            case "TRIGGER_RELOAD" : {
+                this.loadData();
                 break;
             }
         }
