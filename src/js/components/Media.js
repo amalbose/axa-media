@@ -21,7 +21,7 @@ export default class Media extends React.Component {
                     {rating}
                     <img src={mediaItem.poster} alt={mediaItem.processedFileName} />
                     <div className="caption">
-                        <h5 className="noOverflow" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
+                        <h5 className="noOverflow movieTitle" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
                      {/*   <p><a href="#" className="btn btn-primary" role="button">Button</a> <a href="#" className="btn btn-default" role="button">Button</a></p>
                         */}
                     </div>

@@ -66,6 +66,21 @@ input, button, textarea, :focus {
     text-overflow: ellipsis;
 }
 
+.movieTitle {
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.caption {
+    position: absolute;
+    bottom: 14px;
+    text-align: center;
+    background-color: rgba(37, 29, 29, 0.82);
+    width: 100%;
+    color: #fff !important;
+}
+
 .thumbnailCol .caption {
     padding: 3px;
     padding-left: 10px;
