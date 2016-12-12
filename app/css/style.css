@@ -5,6 +5,16 @@ html, body {
     margin-right: auto;
 }
 
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+    -webkit-user-select: none;
+    user-select: none;
+}
+input, button, textarea, :focus {
+    outline: none;
+}
+
 .navbar, #app, body {
     overflow: hidden;
 }
