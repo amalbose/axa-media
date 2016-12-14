@@ -48,9 +48,16 @@ export default class Settings extends React.Component {
 
     render() {
         return (
-            <div>
-                Settings 
-                <ScanDirectoryList onAddDir={this.triggerAddDir.bind(this)} dirs={this.state.dirs}/>  
+            <div className="container-fluid">
+                <div className="panel panel-primary">
+                    <div className="panel-heading"> 
+                        <h3 className="panel-title">Settings</h3> 
+                    </div> 
+                    <div className="panel-body">
+                         <ScanDirectoryList onAddDir={this.triggerAddDir.bind(this)} dirs={this.state.dirs}/>   
+                    </div> 
+                </div>
+ 
             </div>
         );
     }
