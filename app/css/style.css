@@ -54,6 +54,7 @@ input, button, textarea, :focus {
 }
 
 .thumbnailCol {
+    height: 289px;
     padding: 0px !important;
     border-radius: 0px !important; 
     background-color: #d8d8d8;
@@ -73,8 +74,8 @@ input, button, textarea, :focus {
 }
 
 .caption {
-    position: absolute;
-    bottom: 14px;
+    position: relative;
+    bottom: 37px;
     text-align: center;
     background-color: rgba(37, 29, 29, 0.82);
     width: 100%;
