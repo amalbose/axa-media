@@ -124,7 +124,8 @@ class MovieStore extends EventEmitter{
     getFiltered(){
         var matchesFilter = new RegExp(this.filter, "i");
         return this.mediaFiles.filter(movie => !this.filter || 
-            (matchesFilter.test(movie.processedFileName) || matchesFilter.test(movie.imdbActors)));
+            (matchesFilter.test(movie.processedFileName) || matchesFilter.test(movie.imdbActors)
+            || matchesFilter.test(movie.imdbGenres)));
     }
 
     handleActions(action){
