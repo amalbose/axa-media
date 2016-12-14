@@ -1,6 +1,6 @@
 require("babel-register");
 
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, shell} = require('electron')
 const path = require('path')
 const url = require('url')
 const dialog = require('electron').dialog
@@ -43,4 +43,8 @@ ipc.on('open-file-dialog', function (event) {
   }, function (files) {
     if (files) event.sender.send('selected-directory', files)
   })
+})
+
+ipc.on('open-movie', function (event,path) {
+  shell.openItem(path)
 })

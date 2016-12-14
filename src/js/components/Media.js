@@ -1,7 +1,14 @@
 import React from 'react';
 const uuidV4 = require('uuid/v4');
+const ipc = require('electron').ipcRenderer
 
 export default class Media extends React.Component {
+
+    playVideo(){
+        console.log(this.props.mediaItem.absPath)
+        ipc.send('open-movie', this.props.mediaItem.absPath)
+    }
+
 
     render() {
         const {mediaItem, count} = this.props;
@@ -26,6 +33,7 @@ export default class Media extends React.Component {
                     {rating}
                     {genre}
                     <img src={mediaItem.poster} alt={mediaItem.processedFileName} />
+                    <span className="glyphicon glyphicon-play playBtn pointerCursor" onClick={this.playVideo.bind(this)} />
                     <div className="caption">
                         <h5 className="noOverflow movieTitle" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
                      {/*   <p><a href="#" className="btn btn-primary" role="button">Button</a> <a href="#" className="btn btn-default" role="button">Button</a></p>

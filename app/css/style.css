@@ -60,6 +60,7 @@ input, button, textarea, :focus {
     background-color: #d8d8d8;
     border: 1px solid #fff !important;
     position: relative;
+    text-align: center;
 }
 
 .noOverflow {
@@ -74,13 +75,18 @@ input, button, textarea, :focus {
     cursor: pointer;
 }
 
+.pointerCursor {
+    cursor: pointer;
+}
+
 .caption {
     position: relative;
-    bottom: 37px;
+    bottom: 116px;
     text-align: center;
     background-color: rgba(37, 29, 29, 0.82);
     width: 100%;
     color: #fff !important;
+    
 }
 
 .thumbnailCol .caption {
@@ -110,4 +116,14 @@ input, button, textarea, :focus {
     color: white;
     max-width: 180px;
     text-align: right;
+}
+
+.playBtn{
+    top: -180px;
+    font-size: 75px;
+    color: rgba(29, 29, 29, 0.42);
+}
+
+.playBtn:hover {
+    color: rgba(29, 29, 29, 0.71);
 }
