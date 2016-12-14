@@ -19,7 +19,7 @@ export default class Header extends React.Component {
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <form className="navbar-form navbar-left">
                         <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Search Movies" onChange={this.filterMovies.bind(this)}/>
+                        <input type="text" className="form-control" placeholder="Search Movies or Actors" onChange={this.filterMovies.bind(this)}/>
                         </div>
                     </form>
                     <ul className="nav navbar-nav navbar-right">

@@ -123,7 +123,8 @@ class MovieStore extends EventEmitter{
 
     getFiltered(){
         var matchesFilter = new RegExp(this.filter, "i");
-        return this.mediaFiles.filter(movie => !this.filter || matchesFilter.test(movie.processedFileName));
+        return this.mediaFiles.filter(movie => !this.filter || 
+            (matchesFilter.test(movie.processedFileName) || matchesFilter.test(movie.imdbActors)));
     }
 
     handleActions(action){
