@@ -89,7 +89,7 @@ input, button, textarea, :focus {
 
 .caption {
     position: relative;
-    bottom: 112px;
+    bottom: 288px;
     text-align: center;
     background-color: rgba(37, 29, 29, 0.82);
     width: 100%;
@@ -123,9 +123,13 @@ input, button, textarea, :focus {
 }
 
 .playBtn{
-    top: -180px;
+    top: -275px;
     font-size: 75px;
-    color: rgba(29, 29, 29, 0.42);
+    color: rgba(255, 255, 255, 0);
+    padding-bottom: 90px;
+    padding-top: 90px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .playBtn:hover {
