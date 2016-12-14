@@ -15,10 +15,16 @@ export default class Media extends React.Component {
         if(mediaItem.imdbRating) {
             rating = <p className="imdbRating">{mediaItem.imdbRating}</p> 
         }
+
+        let genre = '';
+        if(mediaItem.imdbGenres) {
+            genre = <p className="imdbGenre">{mediaItem.imdbGenres}</p> 
+        }
         return (
             <div className={classVal}>
                 <div className="thumbnail thumbnailCol">
                     {rating}
+                    {genre}
                     <img src={mediaItem.poster} alt={mediaItem.processedFileName} />
                     <div className="caption">
                         <h5 className="noOverflow movieTitle" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
