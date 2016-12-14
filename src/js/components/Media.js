@@ -17,6 +17,8 @@ export default class Media extends React.Component {
             classVal = "mediaItem col-xs-15";
         } else if(count == 4) {
             classVal = "mediaItem col-sm-3 col-lg-3 col-md-3";
+        } else if(count == 3) {
+            classVal = "mediaItem col-sm-4 col-lg-4 col-md-4";
         }
         let rating = '';
         if(mediaItem.imdbRating) {

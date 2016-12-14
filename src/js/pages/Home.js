@@ -32,10 +32,12 @@ export default class Home extends React.Component {
     getCount(){
         let width = window.innerWidth;
         let count = 6;
-        if(width < 1050 && width > 830)
+        if(width < 1050 && width > 900)
             count = 5;
-        else if(width <= 830)
+        else if(width <= 900 && width > 700)
             count = 4;
+        else if(width <= 700)
+            count = 3;
         return count;
     }
 
