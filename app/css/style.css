@@ -23,6 +23,10 @@ input, button, textarea, :focus {
     overflow: hidden;
 }
 
+.searchInput {
+    width: 240px !important;
+}
+
 #mediaList{
     /*max-width: 1200px;*/
     margin-left: auto;
@@ -106,9 +110,6 @@ input, button, textarea, :focus {
 .imdbRating{
     position: absolute;
     background-color: #efa234;
-    /*border-radius: 15px;
-    padding: 5px;*/
-    /*margin: 3px;*/
     right: 0px;
     z-index: 900;
 }
