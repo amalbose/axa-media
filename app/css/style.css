@@ -85,7 +85,7 @@ input, button, textarea, :focus {
 
 .caption {
     position: relative;
-    bottom: 116px;
+    bottom: 112px;
     text-align: center;
     background-color: rgba(37, 29, 29, 0.82);
     width: 100%;
@@ -94,7 +94,7 @@ input, button, textarea, :focus {
 }
 
 .thumbnailCol .caption {
-    padding: 3px;
+    padding: 1px;
     padding-left: 10px;
 }
 
@@ -105,21 +105,20 @@ input, button, textarea, :focus {
 
 .imdbRating{
     position: absolute;
-    background-color: #fafa62;
-    border-radius: 15px;
-    padding: 5px;
-    margin: 3px;
+    background-color: #efa234;
+    /*border-radius: 15px;
+    padding: 5px;*/
+    /*margin: 3px;*/
+    right: 0px;
     z-index: 900;
 }
 
 .imdbGenre {
     position: absolute;
-    background-color: rgba(69, 62, 62, 0.61);
     padding: 5px;
-    right: 0px;
-    color: white;
-    max-width: 180px;
-    text-align: right;
+    left: 0px;
+    /*max-width: 160px;
+    text-align: right;*/
 }
 
 .playBtn{

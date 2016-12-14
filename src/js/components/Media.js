@@ -22,12 +22,12 @@ export default class Media extends React.Component {
         }
         let rating = '';
         if(mediaItem.imdbRating) {
-            rating = <p className="imdbRating">{mediaItem.imdbRating}</p> 
+            rating = <p className="imdbRating badge">{mediaItem.imdbRating}</p> 
         }
 
         let genre = '';
         if(mediaItem.imdbGenres) {
-            genre = <p className="imdbGenre">{mediaItem.imdbGenres}</p> 
+            genre = <p className="imdbGenre label label-primary">{mediaItem.imdbGenres}</p> 
         }
         return (
             <div className={classVal}>
