@@ -4,9 +4,9 @@ export default class Footer extends React.Component {
 
     render() {
         return (
-            <div>
-                <span></span>
-            </div>
+            <footer className="footer">
+                <span>Statu</span>
+            </footer>
         );
     }
 }
