@@ -9,6 +9,7 @@ class MediaFile {
     constructor(_absPath){
         this.movieDataStatus    = 'NOT_STARTED';
         this.imdbURL            = '';
+        this.imdbTitle          = '';
         this.imdbYear           = '';
         this.imdbActors         = '';
         this.imdbDirector       = '';

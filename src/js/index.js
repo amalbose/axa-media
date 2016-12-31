@@ -7,6 +7,9 @@ import Home from './pages/Home';
 import Settings from './pages/Settings';
 import About from './pages/About';
 
+global.jQuery = global.$ = require('jquery');
+require('bootstrap');
+
 ReactDOM.render( 
     <Router history={hashHistory}>
         <Route path="/" component={App}>

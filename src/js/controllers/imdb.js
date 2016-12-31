@@ -8,5 +8,6 @@ module.exports.getImdbDetails = (movieName, callback) => {
     .then((res)=> {
         callback(res)
     }).catch((err)=>{
+        callback("ERROR")
     });
 }

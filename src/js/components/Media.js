@@ -2,10 +2,11 @@ import React from 'react';
 const uuidV4 = require('uuid/v4');
 const ipc = require('electron').ipcRenderer
 
+import MovieDetails from './MovieDetails';
+
 export default class Media extends React.Component {
 
     playVideo(){
-        console.log(this.props.mediaItem.absPath)
         ipc.send('open-movie', this.props.mediaItem.absPath)
     }
 
@@ -37,11 +38,10 @@ export default class Media extends React.Component {
                     <img src={mediaItem.poster} alt={mediaItem.processedFileName} />
                     <span className="glyphicon glyphicon-play playBtn pointerCursor" onClick={this.playVideo.bind(this)} />
                     <div className="caption">
-                        <h5 className="noOverflow movieTitle" title={mediaItem.processedFileName}>{mediaItem.processedFileName}</h5>
-                     {/*   <p><a href="#" className="btn btn-primary" role="button">Button</a> <a href="#" className="btn btn-default" role="button">Button</a></p>
-                        */}
+                        <h5 className="noOverflow movieTitle" title={mediaItem.processedFileName} data-toggle="modal" data-target={"#"+mediaItem._id}>{mediaItem.processedFileName}</h5>
                     </div>
                 </div>
+                <MovieDetails mediaItem={mediaItem}/>
             </div>
         );
     }

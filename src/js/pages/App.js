@@ -10,7 +10,7 @@ export default class App extends React.Component {
             <div>
                 <Header headerTitle='Home' />
                 {this.props.children}
-                <Footer/>
+                <Footer />
             </div>
         );
     }

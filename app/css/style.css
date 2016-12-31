@@ -13,6 +13,7 @@ html, body {
     position: absolute;
     bottom: 0;
     width: 100%;
+    z-index: 999;
     height: 20px;
     background-color: #f5f5f5;
 }
@@ -137,4 +138,9 @@ input, button, textarea, :focus {
 
 .modal-content {
   border-radius: 0 !important;
+}
+
+#footerStatus {
+    width: 200px;
+    float: right;
 }
