@@ -28,9 +28,11 @@ var walk = (dir, done) => {
           });
         } else {
             var extn = path.extname(file);
-            var extns = ['.avi' , '.mp4' , '.mkv'];
-            if(extns.indexOf(extn) != -1)
-                results.push(file);
+            if(file.replace(extn,"").toLowerCase().indexOf("sample") == -1) {
+              var extns = ['.avi' , '.mp4' , '.mkv'];
+              if(extns.indexOf(extn) != -1)
+                  results.push(file);
+            }
           next();
         }
       });
